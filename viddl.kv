@@ -1,0 +1,35 @@
+<DownloaderUI>:
+    orientation: 'vertical'
+    padding: 10
+    spacing: 10
+
+    TextInput:
+        hint_text: "Enter Nico/Youtube URL"
+        text: root.url
+        multiline: False
+        on_text_validate: root.run_download()
+
+    BoxLayout:
+        size_hint_y: None
+        height: 40
+        Spinner:
+            text: root.platform
+            values: ["nico", "youtube"]
+            on_text: root.platform = self.text
+        Spinner:
+            text: root.mode
+            values: ["video", "audio"]
+            on_text: root.mode = self.text
+
+    Button:
+        text: "Start Download"
+        size_hint_y: None
+        height: 50
+        on_press: root.run_download()
+
+    ScrollView:
+        Label:
+            text: root.output
+            text_size: self.width, None
+            size_hint_y: None
+            height: self.texture_size[1]
